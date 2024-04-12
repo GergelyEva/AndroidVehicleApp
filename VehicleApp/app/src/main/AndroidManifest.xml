@@ -48,13 +48,13 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA_U-z69fk5GvJpjM4YuEVNR4tCVR2Hmp4" />
+            android:value="PUT YOUR OWN API KEY HERE" />
 
 
 
         <meta-data
             android:name="com.google.android.api_key"
-            android:value="AIzaSyA_U-z69fk5GvJpjM4YuEVNR4tCVR2Hmp4" />
+            android:value="PUT YOUR OWN API KEY HERE" />
 
     </application>
 
