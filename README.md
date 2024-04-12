@@ -21,6 +21,8 @@ This app was designed based on the Android Lab project requirements: <br>
 -show current location on map <br>
 -create database of nearby hotels, restaurants, car services <br>
 -send SOS message to emergency contact, containg the location, weather condition, breakdown reason.<br>
+![My Image](img/main.png)
+
 
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
 
@@ -32,11 +34,18 @@ Manages the main functionality of the app, such as location tracking, weather fe
 - diagnostics: When the user clicks on the diagnostics, breakdown reasons will show in a toast. The breakdown reason is stored in an array, and the actual reason is randomized.<br>
 - help: When the user clicks on this icon, they require assistance, and a broadcast is sent to the Vehicle App Broadcast. A toast will show with an answer from a known person, something along the lines of "help is on the way."
 
+![My Image](img/main2.png)  ![My Image](img/sms.png)
+
+
+
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
 
 ### MapActivity
 
 Shows a map with points of interest nearby. The selected points of interest are: hotels, restaurants, and car services. It contains icons so the user can check the list of nearby amenities.
+
+![My Image](img/map.png)
+
 
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
 
@@ -49,5 +58,8 @@ A class to represent a point on the map with its name, coordinates, and address.
 ### Database Helpers
 
 DatabaseHelper is a generic class for a generic database. The other DatabaseHelpers (Restaurant, Hotel, CarService) manage the SQLITE database for specific amenities. They have methods to insert and upgrade the specific databases.
+
+![My Image](img/restaurantlist.png)
+
 
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
