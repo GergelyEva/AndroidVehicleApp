@@ -54,20 +54,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize emergency contacts
         emergencyContacts = new ArrayList<>();
-        emergencyContacts.add("+40743811531"); // Hardcoded for exercise, should be replaced with user input
+        emergencyContacts.add("+40743811531");
 
-        // Initialize breakdown reasons
         initializeBreakdownReasons();
 
-        // Request permissions
         requestPermissions();
 
-        // Initialize location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        // Set up SOS button click listener
 
         sos=findViewById(R.id.sos);
         mappic=findViewById(R.id.mappic);
@@ -75,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         helpPic=findViewById(R.id.helpPic);
         sos.setOnClickListener(view -> sendSosSignal());
 
-        // Initialize views
         temperatureTextView = findViewById(R.id.temperature_textview);
         weatherConditionTextView = findViewById(R.id.weather_condition_textview);
         locationTextView=findViewById(R.id.locationtextView);
@@ -83,11 +76,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
          menu=findViewById(R.id.menu);
          optionslayout=findViewById(R.id.optionslayout);
-        // Fetch weather data when activity starts
+
         fetchWeatherData();
-
-        // Set up button listeners
-
 
         diagnosticspic.setOnClickListener(view -> displayRandomBreakdownReason());
         helpPic.setOnClickListener(this::onBroadcastSendBtnClicked);
@@ -155,10 +145,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSIONS_REQUEST_LOCATION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, start location updates
                 startLocationUpdates();
             } else {
-                // Permission denied, handle accordingly
                 Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
             }
         }
@@ -171,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
         }
     }
-
 
     private void sendSosSignal() {
         if (checkPermissions()) {
@@ -194,15 +181,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
-
-
+    //Check permissions
     private boolean checkPermissions() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED;
     }
 
-
-    // Inner AsyncTask class to fetch weather data
+    //Fetch weather data, based on location
     private class FetchWeatherTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -256,6 +241,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    //Send sms to the hardcoded emergency contact
     private void sendSms(final String phoneNumber, final String message) {
         Timer smsSendingTimer = new Timer();
         smsSendingTimer.schedule(new TimerTask() {
@@ -269,9 +255,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     Toast.makeText(MainActivity.this, "Failed to send SMS", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 0, 5000); // Repeat every 30 seconds
+        }, 0, 5000);
     }
 
+    //Array to hold the breakdown reasons
     private void initializeBreakdownReasons() {
         breakdownReasons = new ArrayList<>();
         breakdownReasons.add("Mechanical Failure");
@@ -291,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         breakdownReasons.add("Lack of Maintenance");
     }
 
+    //Randomize breakdown reasons
     private String getRandomBreakdownReason() {
         if (!breakdownReasons.isEmpty()) {
             Random random = new Random();
@@ -300,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         return "";
     }
 
+    //Show breakdown reason in a Toast
     private void displayRandomBreakdownReason() {
         String reason = getRandomBreakdownReason();
         if (!reason.isEmpty()) {
@@ -308,14 +297,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             Toast.makeText(this, "No breakdown reasons available", Toast.LENGTH_LONG).show();
         }
     }
+
+    //Update location when location changes
     @Override
     public void onLocationChanged(Location location) {
-        // Update currentLocation when location changes
         currentLocation = location;
-        // Call any method that requires the current location, e.g., fetchWeatherData()
         fetchWeatherData();
     }
 
+    //Send broadcast
     public void onBroadcastSendBtnClicked(View v) {
         Intent intent = new Intent();
         intent.setAction("com.vehicleapp.sender");

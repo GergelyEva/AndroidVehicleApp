@@ -63,12 +63,10 @@ public class MapActivity extends Activity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        // Initializing the MapView
         mMapView = findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
 
-        // Initialize database helpers
         hotelDatabaseHelper = new HotelDatabaseHelper(this);
         restaurantDatabaseHelper = new RestaurantDatabaseHelper(this);
         carServiceDatabaseHelper = new CarServiceDatabaseHelper(this);
@@ -115,7 +113,7 @@ public class MapActivity extends Activity implements OnMapReadyCallback {
             showCurrentLocation();
         }
     }
-
+    //Show current location on map
     private void showCurrentLocation() {
         Log.d(TAG, "Fetching current location...");
         FusedLocationProviderClient locationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -144,7 +142,7 @@ public class MapActivity extends Activity implements OnMapReadyCallback {
                 });
     }
 
-    // Handle user's answer on the permission request
+    // Handles user answer on the permission request
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -158,6 +156,7 @@ public class MapActivity extends Activity implements OnMapReadyCallback {
         }
     }
 
+    //Search for amenities based on location
     private class POISearchTask extends AsyncTask<Double, Void, String> {
         @Override
         protected String doInBackground(Double... geoCoordinates) {
