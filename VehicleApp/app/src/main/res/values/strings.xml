@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VehicleApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_maps_key">57e9f68b4e3750478e12167189acd74d</string>
+    <string name="google_places_api_key">AIzaSyCKl0VD6ltzheP7H6RW5PUvVTXK5FtVugE</string>
+</resources>
