@@ -10,6 +10,8 @@
     <li><a href="#MapActivity">MapActivity</a></li>
     <li><a href="#GeopointItem">GeopointItem</a></li>
     <li><a href="#Database Helpers">Database Helpers</a></li>
+    <li><a href="#Services">Services</a></li>
+
   </ol>
 </details>
 
@@ -59,7 +61,14 @@ A class to represent a point on the map with its name, coordinates, and address.
 
 DatabaseHelper is a generic class for a generic database. The other DatabaseHelpers (Restaurant, Hotel, CarService) manage the SQLITE database for specific amenities. They have methods to insert and upgrade the specific databases.
 
+
+<p align="right">(<a href="#readme-top">Back to Top</a>)</p>
+
+### Services
+
+The NearbyActivity class retrieves information about nearby amenities( restaurants, hotels, car services). This information is then sent to the corresponding activities (NearbyHotelsActivity, NearbyRestaurantsActivity, NearbyServicesActivity). These activities are responsible for presenting the retrieved information to the user.
 ![My Image](img/restaurantlist.png)
 
 
 <p align="right">(<a href="#readme-top">Back to Top</a>)</p>
+

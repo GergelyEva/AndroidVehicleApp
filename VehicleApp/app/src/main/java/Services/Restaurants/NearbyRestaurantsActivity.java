@@ -25,21 +25,16 @@ public class NearbyRestaurantsActivity extends AppCompatActivity {
 
         LinearLayout restaurantLayout = findViewById(R.id.restaurantLayout);
 
-        // Initialize the restaurant database helper
         restaurantDatabaseHelper = new RestaurantDatabaseHelper(this);
 
-        // Open the database
         restaurantDatabaseHelper.open();
 
-        // Retrieve the list of restaurants from the database
         List<GeopointItem> restaurantList = restaurantDatabaseHelper.getAllRestaurants();
 
-        // Close the database
         restaurantDatabaseHelper.close();
 
         if (restaurantList != null && !restaurantList.isEmpty()) {
             for (GeopointItem restaurant : restaurantList) {
-                // Create a TextView for each restaurant item and add it to the layout
                 String restaurantDetails = "Name: " + restaurant.getName() + "\n"
                         + "Latitude: " + restaurant.getLatitude() + "\n"
                         + "Longitude: " + restaurant.getLongitude() + "\n"

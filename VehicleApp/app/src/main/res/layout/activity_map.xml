@@ -42,7 +42,7 @@
         android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:apiKey="57e9f68b4e3750478e12167189acd74d"
+        android:apiKey="YOUR OWN API KEY"
         android:clickable="true" />
 
 

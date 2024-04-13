@@ -1,7 +1,6 @@
 package Services.Hotels;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,18 +24,14 @@ public class NearbyHotelsActivity extends AppCompatActivity {
 
         LinearLayout hotelsLayout = findViewById(R.id.hotelsLayout);
 
-        // Initialize the hotel database helper
         hotelDatabaseHelper = new HotelDatabaseHelper(this);
 
         hotelDatabaseHelper.open();
-        // Retrieve all hotels from the database
         List<GeopointItem> hotelList = hotelDatabaseHelper.getAllHotels();
 
         hotelDatabaseHelper.close();
         if (hotelList != null && !hotelList.isEmpty()) {
-            // Display hotel details
             for (GeopointItem hotel : hotelList) {
-                // Create a TextView for each hotel item and add it to the layout
                 String hotelDetails = "Name: " + hotel.getName() + "\n"
                         + "Latitude: " + hotel.getLatitude() + "\n"
                         + "Longitude: " + hotel.getLongitude() + "\n"
@@ -47,7 +42,6 @@ public class NearbyHotelsActivity extends AppCompatActivity {
                 hotelsLayout.addView(textView);
             }
         } else {
-            // Display message when no hotels are found
             TextView textView = new TextView(this);
             textView.setText("No hotels nearby");
             hotelsLayout.addView(textView);

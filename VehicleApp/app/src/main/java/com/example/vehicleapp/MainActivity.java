@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
         emergencyContacts = new ArrayList<>();
-        emergencyContacts.add("+40743811531");
+        emergencyContacts.add("PHONE NUMBER");
 
         initializeBreakdownReasons();
 
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected String doInBackground(String... location) {
             try {
                 URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + location[0] + "&lon=" + location[1] +
-                        "&units=metric&appid=55f91d9d3fa62a6de60cc982aca16cac");
+                        "&units=metric&appid=YOUR OWN API KEY");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = urlConnection.getInputStream();
                 InputStreamReader reader = new InputStreamReader(in);

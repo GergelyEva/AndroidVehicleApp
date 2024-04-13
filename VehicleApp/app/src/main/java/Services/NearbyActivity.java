@@ -27,7 +27,6 @@ public class NearbyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nearby_services);
         TextView all_services=findViewById(R.id.all_services);
 
-        // Retrieve lists from intent
         List<GeopointItem> restaurantList = new ArrayList<>();
         List<GeopointItem> hotelList = new ArrayList<>();
         List<GeopointItem> carServiceList = new ArrayList<>();
@@ -39,24 +38,13 @@ public class NearbyActivity extends AppCompatActivity {
             ArrayList<String> hotelNames = intent.getStringArrayListExtra("hotelNames");
             ArrayList<String> carServiceNames = intent.getStringArrayListExtra("carServiceNames");
 
-            // Populate your lists using the received names
-            // For example:
-
-            // Populate lists using the received names
             populateListFromNames(restaurantList, restaurantNames);
             populateListFromNames(hotelList, hotelNames);
             populateListFromNames(carServiceList, carServiceNames);
-            // Similarly, populate hotelList and carServiceList using hotelNames and carServiceNames
 
-            // Update addresses for each list
             new UpdateAddressesTask().execute(restaurantList, hotelList, carServiceList);
         }
 
-
-
-
-
-        // Button click listeners
         Button autoServices = findViewById(R.id.buttonAutoService);
 
         StringBuilder allServicesText = new StringBuilder();
@@ -64,57 +52,10 @@ public class NearbyActivity extends AppCompatActivity {
         allServicesText.append("Hotels:\n").append(getListAsString(hotelList)).append("\n\n");
         allServicesText.append("Car Services:\n").append(getListAsString(carServiceList));
 
-        // Set the concatenated text to the TextView
         all_services.setText(allServicesText.toString());
-/*5
-        autoServices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Assuming NearbyServices is the fragment class you want to display
-                String carList=getListAsString(carServiceList);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                NearbyServices nearbyServicesFragment=NearbyServices.newInstance(carList);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, new NearbyServices()) // Pass an instance of the fragment class
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-        Button restaurantsbtn = findViewById(R.id.buttonRestaurant);
-        restaurantsbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String resList = getListAsString(restaurantList);
-                Log.i("Restaurantlist sent:", resList);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                NearbyRestaurantsActivity nearbyRestaurantsFragment = NearbyRestaurantsActivity.newInstance(resList);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, nearbyRestaurantsFragment)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
 
-        Button hotelbtn = findViewById(R.id.buttonHotel);
-        hotelbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hotels=getListAsString(hotelList);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                NearbyHotels nearbyHotelsFragment = NearbyHotels.newInstance(hotels);
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, new NearbyHotels()) // Pass an instance of the fragment class for hotel services
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });*/
     }
 
-
-    // AsyncTask to update addresses for each list
     private class UpdateAddressesTask extends AsyncTask<List<GeopointItem>, Void, Void> {
 
         @Override
@@ -129,11 +70,9 @@ public class NearbyActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            // Optionally handle post-execution tasks here
         }
     }
 
-    // Method to get address for a GeopointItem
     private void getAddressForLocation(GeopointItem item) {
         try {
             Geocoder geocoder = new Geocoder(NearbyActivity.this, Locale.getDefault());
@@ -168,7 +107,6 @@ public class NearbyActivity extends AppCompatActivity {
     private void populateListFromNames(List<GeopointItem> targetList, ArrayList<String> names) {
         if (names != null) {
             for (String name : names) {
-                // Extract latitude, longitude, and name from the string and create GeopointItem
                 String[] parts = name.split("\n");
                 if (parts.length >= 3) {
                     double lat = Double.parseDouble(parts[1]);

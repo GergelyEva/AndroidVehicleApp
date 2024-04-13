@@ -24,20 +24,15 @@ public class NearbyServicesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nearbyservices);
 
         LinearLayout serviceLayout = findViewById(R.id.carsLayout);
-
-        // Initialize the hotel database helper
         carServiceDatabaseHelper = new CarServiceDatabaseHelper(this);
 
 
         carServiceDatabaseHelper.open();
-        // Retrieve all hotels from the database
         List<GeopointItem> carServices = carServiceDatabaseHelper.getAllCarServices();
 
         carServiceDatabaseHelper.close();
         if (carServices != null && !carServices.isEmpty()) {
-            // Display hotel details
             for (GeopointItem car : carServices) {
-                // Create a TextView for each hotel item and add it to the layout
                 String serviceDetails = "Name: " + car.getName() + "\n"
                         + "Latitude: " + car.getLatitude() + "\n"
                         + "Longitude: " + car.getLongitude() + "\n"
